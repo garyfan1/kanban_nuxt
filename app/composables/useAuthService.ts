@@ -4,7 +4,7 @@ interface SignInResp {
 }
 
 export const useAuthService = () => {
-  const { $api } = useNuxtApp();
+  const nuxtApp = useNuxtApp();
 
   return {
     signIn: async ({
@@ -14,13 +14,13 @@ export const useAuthService = () => {
       username: string;
       password: string;
     }): Promise<SignInResp> => {
-      return await $api("token/", {
+      return await nuxtApp.$api("token/", {
         method: "post",
         body: { username: username, password: password },
       });
     },
     getProfile: async (): Promise<{ username: string }> => {
-      return await $api("profile/", { method: "get" });
+      return await nuxtApp.$api("profile/", { method: "get" });
     },
     refreshLogIn: async (refreshToken: string): Promise<SignInResp> => {
       // to bypass interceptor use $fetch instead of $api
@@ -33,7 +33,7 @@ export const useAuthService = () => {
       username: string;
       password: string;
     }): Promise<{ id: string; username: string }> => {
-      return await $api("register/", { method: "post", body: cred });
+      return await nuxtApp.$api("register/", { method: "post", body: cred });
     },
   };
 };
