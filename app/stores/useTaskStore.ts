@@ -3,13 +3,13 @@ export const useTaskStore = defineStore("task", () => {
 
   const taskService = useTaskService();
 
-  const todoTask = computed(() => {
+  const todoTasks = computed(() => {
     return tasks.value.filter((t) => t.status === "todo");
   });
-  const doingTask = computed(() => {
+  const doingTasks = computed(() => {
     return tasks.value.filter((t) => t.status === "doing");
   });
-  const doneTask = computed(() => {
+  const doneTasks = computed(() => {
     return tasks.value.filter((t) => t.status === "done");
   });
 
@@ -42,9 +42,9 @@ export const useTaskStore = defineStore("task", () => {
 
   return {
     tasks,
-    todoTask,
-    doingTask,
-    doneTask,
+    todoTasks,
+    doingTasks,
+    doneTasks,
     getTaskList,
     getTaskById,
     createTask,

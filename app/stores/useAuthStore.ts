@@ -20,7 +20,7 @@ export const useAuthStore = defineStore("auth", () => {
   const logout = () => {
     accessToken.value = null;
     refreshToken.value = null;
-    navigateTo("/auth");
+    navigateTo("/");
   };
 
   const refreshLogIn = async () => {
