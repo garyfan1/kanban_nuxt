@@ -5,6 +5,7 @@ interface SignInResp {
 
 export const useAuthService = () => {
   const nuxtApp = useNuxtApp();
+  const config = useRuntimeConfig();
 
   return {
     signIn: async ({
@@ -24,7 +25,7 @@ export const useAuthService = () => {
     },
     refreshLogIn: async (refreshToken: string): Promise<SignInResp> => {
       // to bypass interceptor use $fetch instead of $api
-      return await $fetch("http://localhost:8000/api/token/refresh/", {
+      return await $fetch(`${config.public.apiBase}/token/refresh/`, {
         method: "post",
         body: { refresh: refreshToken },
       });

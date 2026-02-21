@@ -2,9 +2,10 @@ let refreshPromise: Promise<void> | null = null;
 
 export default defineNuxtPlugin((nuxtApp) => {
   const authStore = useAuthStore();
+  const config = useRuntimeConfig();
 
   const api = $fetch.create({
-    baseURL: "http://localhost:8000/api/",
+    baseURL: config.public.apiBase,
     retry: 1,
     retryStatusCodes: [401],
 
