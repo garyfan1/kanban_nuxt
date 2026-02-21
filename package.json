@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "docker": "docker build -t garyfan12/kanban-nuxt . && docker push garyfan12/kanban-nuxt"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
