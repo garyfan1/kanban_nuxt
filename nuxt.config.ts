@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   modules: ["vuetify-nuxt-module", "@pinia/nuxt", "@vueuse/nuxt"],
+  app: {
+    head: {
+      title: "Kanban-demo",
+    },
+  },
   runtimeConfig: {
     // Public keys that are exposed to the client
     public: {

@@ -1,12 +1,18 @@
 <script lang="ts" setup>
 const authStore = useAuthStore();
+const snackbarStore = useSnackbarStore();
+const loadingStore = useLoadingStore();
 
 const handleGuestLogIn = async () => {
   try {
+    loadingStore.showSpinner();
     await authStore.logIn({ username: "GuestUser", password: "Test1234!" });
+    snackbarStore.showSnackbar("Logged in as guest user (for demo)", "success");
     navigateTo("/kanban");
   } catch (e) {
     console.log(e);
+  } finally {
+    loadingStore.hideSpinner();
   }
 };
 </script>

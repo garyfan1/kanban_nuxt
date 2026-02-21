@@ -6,6 +6,7 @@ const isFormValid = ref<boolean>(false);
 
 const authState = useAuthStore();
 const snackbarStore = useSnackbarStore();
+const loadingStore = useLoadingStore();
 const route = useRoute();
 const mode = ref<"signUp" | "signIn">(route.query.mode === "signUp" ? "signUp" : "signIn");
 
@@ -43,6 +44,7 @@ const validateUsername = (value: string): string | boolean => {
 
 const handleSubmit = async () => {
   try {
+    loadingStore.showSpinner();
     if (mode.value === "signIn") {
       await authState.logIn({ username: username.value, password: password.value });
       snackbarStore.showSnackbar("Logged In!", "success");
@@ -58,6 +60,8 @@ const handleSubmit = async () => {
       e.response.data.username[0] || e.response.data.password[0] || e.message,
       "error",
     );
+  } finally {
+    loadingStore.hideSpinner();
   }
 };
 </script>

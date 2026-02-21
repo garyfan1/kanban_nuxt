@@ -3,6 +3,7 @@ import { onMounted } from "vue";
 
 const authStore = useAuthStore();
 const snackbarStore = useSnackbarStore();
+const loadingStore = useLoadingStore();
 
 onMounted(async () => {
   if (authStore.refreshToken) {
@@ -51,6 +52,13 @@ onMounted(async () => {
       <v-snackbar v-model="snackbarStore.isShown" :color="snackbarStore.color">
         {{ snackbarStore.message }}
       </v-snackbar>
+      <v-overlay
+        :model-value="loadingStore.isLoading"
+        class="align-center justify-center"
+        persistent
+      >
+        <v-progress-circular color="primary" size="64" indeterminate></v-progress-circular>
+      </v-overlay>
     </v-main>
   </v-app>
 </template>
