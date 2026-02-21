@@ -25,7 +25,7 @@ export const useAuthService = () => {
     },
     refreshLogIn: async (refreshToken: string): Promise<SignInResp> => {
       // to bypass interceptor use $fetch instead of $api
-      return await $fetch(`${config.public.apiBase}/token/refresh/`, {
+      return await $fetch(`${config.public.apiBase}token/refresh/`, {
         method: "post",
         body: { refresh: refreshToken },
       });

@@ -1,7 +1,7 @@
 export const useAuthStore = defineStore("auth", () => {
   const authService = useAuthService();
-  const accessToken = useCookie<string | null>("accessToken");
-  const refreshToken = useCookie<string | null>("refreshToken");
+  const accessToken = useCookie<string | null>("accessToken", { maxAge: 60 * 5 }); // 5 mins
+  const refreshToken = useCookie<string | null>("refreshToken", { maxAge: 60 * 60 * 24 }); // 1 day
 
   const isLoggedIn = computed(() => {
     return !!accessToken.value;
